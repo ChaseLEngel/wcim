@@ -1,0 +1,14 @@
+<%= link_to "Sign in", "#", data: {toggle: "modal", target: "#signInModal"} %>
+
+<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <%= render :template => "devise/sessions/new", :locals => { :resource => resource, :resource_name => :user } %>
+      </div>
+    </div>
+  </div>
+</div>

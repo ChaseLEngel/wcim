@@ -1,0 +1,20 @@
+<%= form_for(@ingredient) do |f| %>
+	<div class="input-group">
+		<%= text_field_tag :name,nil, placeholder: "Enter ingredient...", class: "search-autocomplete form-control" %>
+		<span class="input-group-btn">
+		<%= f.submit "Add", class: "btn btn-primary" %>
+		</span>
+	</div>
+<% end %>
+<% if not @session_ingredients.empty? %>
+	<span>Sorted by:</span>
+	<div class="btn-group btn-group-justifed">
+		<% if session[:sorted_by] == "favorites" %>
+			<%= link_to "Ratio", sortby_path("ratio"), class: "btn btn-default btn-sm "%>
+			<%= link_to "Favorites", sortby_path("favorites"), class: "btn btn-default btn-sm active "%>
+		<% else %>
+			<%= link_to "Ratio", sortby_path("ratio"), class: "btn btn-default btn-sm active"%>
+			<%= link_to "Favorites", sortby_path("favorites"), class: "btn btn-default btn-sm "%>
+		<% end %>
+	</div>
+<% end %>

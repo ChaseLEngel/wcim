@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+	<% if current_user.favorited?(@recipe.id) %>
+		<%= link_to destroy_recipe_favorite_path(@recipe), method: :delete, class: "btn btn-primary active " do %>
+			Favorited
+			<span class="badge"><%= @recipe.favorites.count %></span>
+		<% end %>
+	<% else %>
+		<%= link_to recipe_favorites_path(@recipe), method: "post", class: "btn btn-primary " do %>
+			Favorite 
+			<span class="badge"><%= @recipe.favorites.count %></span>
+		<% end %>
+	<% end %>
+<% else %>
+	<%= link_to "Sign in", data: {toggle: "modal", target: "#signInModal"}, class: "btn btn-primary" do %>
+		Sign in to favorite this.
+		<span class="badge"><%= @recipe.favorites.count %></span>
+	<% end %>
+<% end %>

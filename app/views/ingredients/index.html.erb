@@ -1,0 +1,21 @@
+<%= render "form" %>
+
+<%= "<h4>With:</h4>".html_safe unless @session_ingredients.empty?%>
+<% @session_ingredients.each do |i| %>
+	<%= link_to "#{i} &times;".html_safe, session_delete_path(i), class: "btn btn-primary btn-sm" %>
+<% end %>
+
+<div>
+	<%= "<h4>You can make:</h4>".html_safe unless @recipes.empty?%>
+	<%= "<h4>You can make <strong>NOTHING</strong>.</h4>".html_safe if @recipes.empty? and not @session_ingredients.empty? %>
+	<div class="list-group">
+		<% @recipes.each do |r, count| %>
+			<h3>
+				<%= link_to recipe_path(r), class: "list-group-item" do %>
+					<%= "#{r.name} #{count}/#{r.ingredientsCount} " %>
+					<span class="badge"><%=r.favoriteCount%></span>
+				<% end %>
+			</h3>
+		<% end %>
+	</div>
+</div>
